@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="dark" class="deck">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Larmor · Pitch</title>
+  <meta name="description" content="Larmor: an evidence-gated digital twin from MRI and local spectroscopy. Nine pitch slides. Educational prototype on simulated data.">
+  <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
+  <link rel="stylesheet" href="vendor/phosphor/duotone/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/slides.css">
+  <script>
+    document.documentElement.classList.add("js");
+    try { const t = localStorage.getItem("larmor-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <button class="btn icon theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme" title="Theme (t)"><i class="ph ph-sun"></i></button>
+
+  <main class="deck-stage" id="deck" aria-live="polite">
+
+    <!-- 1. Title -->
+    <section class="slide s-title" data-label="Title">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge" title="Every value shown is of simulated origin. Educational prototype, no clinical meaning."><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">Evidence-gated health twin</p>
+        <h1 class="title">Has it changed,<br>and how sure are we?</h1>
+        <svg class="draw fid" data-draw="fid" viewBox="0 0 800 110" aria-hidden="true"></svg>
+        <p class="meta"><b>Rehmoz Ayub</b><i></i><b>Ege Eroglu</b><i></i><b>Oussama Turki</b></p>
+        <p class="meta dim">InnovateU NMR hackathon, Ulm, 21 Nov 2026</p>
+      </div>
+      <aside class="notes">One number changed between two brain scans. Is the person different, or was the measurement different? Every twin has to answer that before it updates. We are three: Rehmoz, Ege and Oussama.</aside>
+    </section>
+
+    <!-- 2. Problem -->
+    <section class="slide" data-label="Problem">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">01 · Problem</p>
+        <h1>One number moved</h1>
+        <p class="big num">0.69 <span class="arrow">→</span> 0.85</p>
+        <p class="lead">Cho/Cr, six months apart. Did the tissue change, or did the measurement?</p>
+        <p class="tags">
+          <span class="chip neutral">one synthetic brain</span>
+          <span class="chip neutral">one 20 mm frontal voxel</span>
+          <span class="chip neutral">two sessions</span>
+          <span class="chip accent">primary variable named before looking: Cho/Cr</span>
+        </p>
+      </div>
+      <aside class="notes">Cho/Cr is the choline peak divided by the creatine peak in one small cube of tissue. It went from 0.69 to 0.85. We named Cho/Cr as our main variable before we looked at the follow-up, so we cannot pick whichever number happens to move.</aside>
+    </section>
+
+    <!-- 3. Evidence -->
+    <section class="slide" data-label="Evidence">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">02 · Evidence</p>
+        <h1>The second scan was worse</h1>
+        <div class="cols wide-left">
+          <figure>
+            <svg class="draw" data-draw="spectrum" viewBox="0 0 800 360" role="img" aria-label="Sketch of the two spectra. Choline at 3.20 ppm and creatine at 3.03 ppm are 21 Hz apart. The follow-up peaks are lower and broader."></svg>
+            <figcaption><span class="key base"></span>baseline <span class="key follow"></span>follow-up <span class="dim">sketch drawn from the packet values</span></figcaption>
+          </figure>
+          <dl class="facts">
+            <div><dt>Linewidth</dt><dd class="num">8.7 <span class="arrow">→</span> 11.4 <small>Hz</small></dd></div>
+            <div><dt>Signal to noise</dt><dd class="num">31.2 <span class="arrow">→</span> 24.8</dd></div>
+            <div><dt>Real field</dt><dd class="num">2.895 <small>T, label says 3 T</small></dd></div>
+          </dl>
+        </div>
+      </div>
+      <aside class="notes">The spins give a fading signal and the Fourier transform turns it into a spectrum. Choline and creatine sit only 21 Hz apart. In the follow-up the lines are broader and the noise is higher, so the two peaks overlap more and the fitted ratio is less reliable. The frequency says the real field is 2.895 tesla; 3 T is only the label.</aside>
+    </section>
+
+    <!-- 4. Trust -->
+    <section class="slide" data-label="Trust">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">03 · Trust</p>
+        <h1>How far can we trust it?</h1>
+        <div class="cols">
+          <div>
+            <p class="big num">60 <small>%</small></p>
+            <p class="lead">of the Cho/Cr uncertainty comes from the spectral fit.</p>
+          </div>
+          <div class="bars" role="img" aria-label="Region volume uncertainty: the packet says 4 percent, its own 1.1 mm alignment error implies 19 percent.">
+            <p class="bars-title">Region volume uncertainty</p>
+            <div class="bar-row"><span>packet says</span><div class="track"><i style="width:21%"></i></div><b class="num">4 %</b></div>
+            <div class="bar-row warn"><span>1.1 mm alignment implies</span><div class="track"><i style="width:100%"></i></div><b class="num">19 %</b></div>
+            <p class="lead small">We recomputed SNR and volume from the raw files. They match.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">The fit is 60 percent of the error budget, so the cheapest fix is a better shim. The region volume packet claimed 4 percent uncertainty, but its own 1.1 millimetre alignment error implies 19 percent. We caught that, and with 19 percent the volume change is not significant. Valid JSON is not proof, so we went back to the source files and checked.</aside>
+    </section>
+
+    <!-- 5. Update -->
+    <section class="slide" data-label="Update">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker pipe">04 · <span>file</span><i class="ph ph-arrow-right"></i><span>packet</span><i class="ph ph-arrow-right"></i><span>six checks</span><i class="ph ph-arrow-right"></i><span class="on">update</span><i class="ph ph-arrow-right"></i><span>next measurement</span></p>
+        <h1>The twin moves a third of the way</h1>
+        <div class="cols wide-left">
+          <figure>
+            <svg class="draw" data-draw="curves" viewBox="0 0 800 360" role="img" aria-label="Three bell curves: the prior belief at 0.69, the evidence at 0.85 counted at half weight, and the new belief at 0.741."></svg>
+          </figure>
+          <div>
+            <p class="result num"><span class="from">0.69 <small>± 0.05</small> <span class="arrow">→</span></span><b>0.741</b> <small>± 0.048</small></p>
+            <p class="lead">Warning evidence counts half. The twin moves 32 % <span class="dim num">(K = 0.32)</span>.</p>
+            <p class="pair num"><span>z = 2.05 <small>limit 1.96</small></span><span>d² = 3.66 <small>gate 3.84</small></span></p>
+            <p><span class="chip WARN call"><i class="ph ph-warning"></i>suggestive, not conclusive</span></p>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Baseline packets set the belief. The follow-up arrives with warnings, so its variance is doubled and the twin moves 32 percent, from 0.69 to 0.741. z asks whether the measurement changed more than its noise: 2.05, just over 1.96. d squared asks whether the value surprises the twin: 3.66, just under 3.84. Every step is in the log and every value traces back to its file.</aside>
+    </section>
+
+    <!-- 6. Next measurement -->
+    <section class="slide" data-label="Next measurement">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">05 · Next evidence</p>
+        <h1>Next: re-shim and repeat</h1>
+        <p class="big num">4.1 <small>min of scanner time</small></p>
+        <svg class="draw range" viewBox="0 0 800 150" role="img" aria-label="A clean repeat should land between 0.61 and 0.88. The current belief is 0.741.">
+          <line class="axis" x1="40" y1="84" x2="760" y2="84"/>
+          <rect class="band" x="148" y="62" width="486" height="44" rx="8"/>
+          <line class="edge" x1="148" y1="52" x2="148" y2="116"/>
+          <line class="edge" x1="634" y1="52" x2="634" y2="116"/>
+          <circle class="dot" cx="383.8" cy="84" r="8"/>
+          <text class="lbl accent" x="383.8" y="44" text-anchor="middle">belief 0.741</text>
+          <text class="lbl strong" x="148" y="142" text-anchor="middle">0.61</text>
+          <text class="lbl strong" x="634" y="142" text-anchor="middle">0.88</text>
+          <text class="lbl" x="391" y="140" text-anchor="middle">a clean repeat lands here</text>
+          <text class="lbl dim" x="134" y="78" text-anchor="end">real change</text>
+          <text class="lbl dim" x="648" y="78" text-anchor="start">real change</text>
+        </svg>
+      </div>
+      <aside class="notes">We recommend evidence, never treatment. Re-shim and repeat costs about four minutes, gains the most per minute, and removes the cause of the warning. If nothing changed, the repeat should land between 0.61 and 0.88. A value outside that range means the change is real.</aside>
+    </section>
+
+    <!-- 7. We tested the twin -->
+    <section class="slide" data-label="We tested the twin">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">06 · Extend</p>
+        <h1>We tested the twin</h1>
+        <div class="tiles">
+          <div class="tile"><p class="big num">250</p><p>simulated follow-ups with a known answer</p></div>
+          <div class="tile"><p class="big num">93 <small>%</small></p><p>of error bars hold the truth <span class="dim">target 95</span></p></div>
+          <div class="tile"><p class="big num">×1.4</p><p>WARN factor we measured <span class="dim">declared ×2</span></p></div>
+          <div class="tile"><p class="big num">3 <small>%</small></p><p>false claims of change when nothing changed <span class="dim">target 5</span></p></div>
+          <div class="tile"><p class="big num">0</p><p>crashes on hostile packets <span class="dim">137 automatic tests</span></p></div>
+        </div>
+      </div>
+      <aside class="notes">We did not assume the twin is right. We wrote 250 follow-up scans where we know the true answer, spoiled them in known ways, and counted. The error bars hold the truth 93 percent of the time. Doubling the variance for warnings is on the safe side: the data supports 1.4. Broken packets are rejected with a reason and never crash the app.</aside>
+    </section>
+
+    <!-- 8. Maturity -->
+    <section class="slide" data-label="Maturity">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">07 · Maturity</p>
+        <h1>Level 5, and one step past it</h1>
+        <div class="ladder" role="img" aria-label="Maturity ladder from 0 to 5. Larmor reaches level 3, 4 and 5, and adds grading against known truth.">
+          <div class="step" style="--lv:0"><b class="num">0</b><span>Viewer</span></div>
+          <div class="step" style="--lv:1"><b class="num">1</b><span>Registry</span></div>
+          <div class="step" style="--lv:2"><b class="num">2</b><span>Evidence-aware</span></div>
+          <div class="step on" style="--lv:3"><b class="num">3</b><span>Dynamic twin</span><em>Saved belief, updated by checked evidence</em></div>
+          <div class="step on" style="--lv:4"><b class="num">4</b><span>Predictive</span><em>Repeat range 0.61 to 0.88</em></div>
+          <div class="step on" style="--lv:5"><b class="num">5</b><span>Evidence-steering</span><em>Ranks the next measurement. The repeat closes the question.</em></div>
+          <div class="step past" style="--lv:6"><b class="num">+</b><span>Graded</span><em>Tested against known truth, 250 cases</em></div>
+        </div>
+      </div>
+      <aside class="notes">The dossier's ladder runs from a plain viewer to a twin that steers the next measurement. We keep a saved belief and update it only with checked evidence: level 3. We predict the range of a clean repeat: level 4. We rank what to measure next, and when the repeat arrives the open question closes and the advice changes: level 5. One step further, we graded the twin against cases where we know the truth.</aside>
+    </section>
+
+    <!-- 9. Limits and how we worked -->
+    <section class="slide" data-label="Limits">
+      <header class="s-head"><span class="s-brand"><i class="ph-duotone ph-atom"></i>Larmor</span><span class="sim-badge"><b>SIMULATED</b><span>Not a clinical statement</span></span></header>
+      <div class="s-body">
+        <p class="kicker">08 · Limits</p>
+        <h1>Limits, and how we worked</h1>
+        <div class="cols even top">
+          <div class="col-card">
+            <h2><i class="ph ph-ruler"></i>Limits</h2>
+            <p>Synthetic data. One subject, two sessions.</p>
+            <p>No clinical meaning.</p>
+            <p>The six-month drift is a teaching assumption.</p>
+          </div>
+          <div class="col-card">
+            <h2><i class="ph ph-users-three"></i>How we worked</h2>
+            <p>We chose the question, the primary variable, the policies and the limits. We answer for every claim.</p>
+            <p>Claude (Anthropic) was our coding tool. It wrote code and first drafts to our direction.</p>
+            <p>Automatic tests check every number against the dossier. The in-app help runs on a local model on our laptop.</p>
+          </div>
+        </div>
+        <p class="closing">Same checker and update for a battery cell or the scanner itself.</p>
+      </div>
+      <aside class="notes">Everything here is synthetic and has no clinical meaning. The drift we allow over six months is an assumption that test-retest data should replace. We declare our AI use: Claude wrote code and first drafts to our direction, and we did not take its output on trust, because automatic tests check every number against the dossier. The same checker and update work for a battery cell or the scanner itself; only the observation model changes.</aside>
+    </section>
+
+  </main>
+
+  <div class="notes-panel" id="notesPanel" hidden><b>Notes</b><p id="notesText"></p></div>
+
+  <footer class="deck-ui">
+    <button class="btn icon ghost" id="prevBtn" type="button" aria-label="Previous slide"><i class="ph ph-caret-left"></i></button>
+    <button class="btn icon ghost" id="nextBtn" type="button" aria-label="Next slide"><i class="ph ph-caret-right"></i></button>
+    <span class="hint">arrows or click · <kbd>f</kbd> full screen · <kbd>n</kbd> notes</span>
+    <span class="grow"></span>
+    <span class="s-label" id="slideLabel"></span>
+    <span class="counter num" id="counter">1 / 9</span>
+  </footer>
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+  <script src="js/slides.js"></script>
+</body>
+</html>

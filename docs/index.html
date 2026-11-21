@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Larmor · How to use it</title>
+  <meta name="description" content="Larmor is a digital twin that decides how far new scan evidence may move its belief. Educational prototype on simulated data.">
+  <link rel="stylesheet" href="app/vendor/phosphor/regular/style.css">
+  <link rel="stylesheet" href="app/vendor/phosphor/fill/style.css">
+  <link rel="stylesheet" href="app/vendor/phosphor/duotone/style.css">
+  <link rel="stylesheet" href="app/css/app.css">
+  <link rel="stylesheet" href="tutorial.css">
+  <script>
+    try { const t = localStorage.getItem("larmor-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body class="tut-body">
+  <header class="topbar tut-top">
+    <div class="brand">
+      <div class="brand-mark"><i class="ph-duotone ph-atom"></i></div>
+      <div>
+        <div class="brand-name">Larmor</div>
+        <div class="brand-sub">Evidence-gated health twin</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="sim-badge" title="Every value shown is of simulated origin. Educational prototype, no clinical meaning.">
+      <b>SIMULATED</b><span>Not a clinical statement</span>
+    </div>
+    <button class="btn icon ghost" id="themeBtn" type="button" aria-label="Switch light or dark theme"><i class="ph ph-sun"></i></button>
+  </header>
+
+  <main class="tut">
+    <section class="tut-hero">
+      <h1>Larmor</h1>
+      <p class="lede">A digital twin that decides how far new scan evidence may move its belief.</p>
+      <div class="tut-actions">
+        <a class="btn primary" href="app/index.html#/twin"><i class="ph ph-pulse"></i>Open the twin</a>
+        <a class="btn" href="app/index.html#/bench"><i class="ph ph-flask"></i>Open the test bench</a>
+        <a class="btn" href="app/slides.html"><i class="ph ph-presentation-chart"></i>Slides</a>
+      </div>
+    </section>
+
+    <section class="tut-sec" aria-labelledby="q">
+      <h2 id="q">The question</h2>
+      <div class="panel tut-question">
+        <div class="tut-move num" aria-label="Cho/Cr went from 0.69 to 0.85">0.69 <span>→</span> 0.85</div>
+        <ol class="tut-lines">
+          <li>One number rose between two brain scans taken six months apart. It is Cho/Cr: choline divided by creatine, two molecules measured in one small cube of tissue.</li>
+          <li>The second scan was worse. Its peaks were broader and it had more noise.</li>
+          <li>So the twin moves a third of the way, to <b class="num">0.741 ± 0.048</b>, and asks for a repeat scan.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="tut-sec" aria-labelledby="steps">
+      <h2 id="steps">Try it in five steps</h2>
+      <ol class="tut-steps">
+        <li class="panel tut-step">
+          <div class="tut-n num">1</div>
+          <div>
+            <h3><a href="app/index.html#/twin">Twin state</a></h3>
+            <p>Press <b>Start empty</b>, then <b>Next packet</b> six times. A packet is one measured value with its uncertainty, its quality checks and its source file. The belief builds one packet at a time.</p>
+            <p>Now drag the <b>WARN policy</b> slider to ×1. Cho/Cr jumps to <span class="num">0.768</span>. That is what the twin would believe if it took the worse scan at full weight.</p>
+          </div>
+        </li>
+        <li class="panel tut-step">
+          <div class="tut-n num">2</div>
+          <div>
+            <h3><a href="app/index.html#/check">Check a packet</a></h3>
+            <p>Pick a packet from the list and read the decision on the right.</p>
+            <ul class="tut-picks">
+              <li><span class="mono">E-t1-chobad</span><span class="chip FAIL">Reject</span><span>Rejected for 9 reasons.</span></li>
+              <li><span class="mono">U05</span><span class="chip WARN">Warning</span><span>The producer says PASS. Its own signal-to-noise check fails, so the twin uses WARN.</span></li>
+              <li><span class="mono">U13</span><span class="chip FAIL">Reject</span><span>A scan from a 1.5 T scanner. It cannot be compared with the 3 T baseline.</span></li>
+            </ul>
+          </div>
+        </li>
+        <li class="panel tut-step">
+          <div class="tut-n num">3</div>
+          <div>
+            <h3><a href="app/index.html#/trace">Trace to source</a></h3>
+            <p>Click a box. Every value walks back to its file and to the file's fingerprint (SHA-256).</p>
+          </div>
+        </li>
+        <li class="panel tut-step">
+          <div class="tut-n num">4</div>
+          <div>
+            <h3><a href="app/index.html#/explain">Competing explanations</a>, then <a href="app/index.html#/next">What to measure next</a></h3>
+            <p>The first screen lists what else could explain the rise, and the test that would settle each one.</p>
+            <p>The second gives the advice: re-shim (make the magnetic field more even) and repeat the scan. It takes <span class="num">4.1</span> minutes. If nothing changed, a clean repeat should land between <span class="num">0.61</span> and <span class="num">0.88</span>.</p>
+          </div>
+        </li>
+        <li class="panel tut-step">
+          <div class="tut-n num">5</div>
+          <div>
+            <h3><a href="app/index.html#/bench">Test bench</a></h3>
+            <p>250 simulated follow-up scans where we know the answer, so the twin can be graded.</p>
+            <div class="tut-facts">
+              <div><b class="num">93 %</b><span>of error bars hold the true value</span></div>
+              <div><b class="num">×1.4</b><span>warning factor measured, against the ×2 we declared</span></div>
+              <div><b class="num">3 %</b><span>of no-change cases where the twin claimed a change</span></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="tut-sec" aria-labelledby="ro">
+      <h2 id="ro">What the online copy cannot do</h2>
+      <div class="note"><i class="ph ph-lock-simple"></i><div>It is read-only. It shows stored packets and one stored bench run. To check a packet of your own or run a new bench, run Larmor on your own computer.</div></div>
+    </section>
+
+    <section class="tut-sec" aria-labelledby="run">
+      <h2 id="run">Run it yourself</h2>
+      <div class="panel">
+        <ol class="tut-run">
+          <li>Install Python 3.11 and get the code from the repository.</li>
+          <li>Install the packages:
+            <pre><code>pip install -r requirements.txt</code></pre></li>
+          <li>Get the organizers' StarterPack v0.3. It is not in this repository. Put the folder <span class="mono">MRI_Hackathon_DataScience_StarterPack_v0.3</span> next to the <span class="mono">twin</span> folder, or point the environment variable <span class="mono">NMR_STARTERPACK</span> at it.</li>
+          <li>Start the app from the repository folder, then open <span class="mono">http://localhost:8765</span>:
+            <pre><code>py -m uvicorn server:app --app-dir twin --port 8765</code></pre>
+            <p class="small muted">On macOS or Linux, write <span class="mono">python</span> in place of <span class="mono">py</span>.</p></li>
+        </ol>
+        <p class="tut-felix"><b>Felix, the help assistant, is optional.</b> It needs a language model running on your own machine with an OpenAI-style API. Point <span class="mono">LARMOR_LLM_BASE_URL</span> and <span class="mono">LARMOR_LLM_MODEL</span> at it. With no model, set <span class="mono">LARMOR_ASSISTANT_WARM=0</span> and everything else works as before.</p>
+      </div>
+    </section>
+
+    <section class="tut-sec tut-two">
+      <div aria-labelledby="lim">
+        <h2 id="lim">Limits</h2>
+        <ul class="tut-list">
+          <li>The data are synthetic. They come from the organizers' StarterPack for the InnovateU NMR challenge "From Spins to a Health Digital Twin" (Ulm, 21 Nov 2026).</li>
+          <li>One subject, two sessions.</li>
+          <li>No clinical meaning. The twin advises what to measure next and never names a diagnosis.</li>
+          <li>The drift we allow over six months is a teaching assumption.</li>
+        </ul>
+      </div>
+      <div aria-labelledby="how">
+        <h2 id="how">How we worked</h2>
+        <ul class="tut-list">
+          <li>The team is Rehmoz Ayub, Ege Eroglu and Oussama Turki. We chose the question, the primary variable, the update policy and the limits, and we answer for every claim.</li>
+          <li>Claude (Anthropic) was our coding tool. It wrote the code and first drafts to our direction.</li>
+          <li>Every number is checked against the organizers' dossier by automatic tests.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tut-foot">
+    <a href="https://github.com/RehmozAyub/larmor-health-twin"><i class="ph ph-github-logo"></i>Code on GitHub</a>
+    <span class="muted">Educational prototype on simulated data.</span>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("themeBtn");
+      function icon() {
+        var dark = document.documentElement.dataset.theme !== "light";
+        btn.querySelector("i").className = "ph " + (dark ? "ph-sun" : "ph-moon");
+      }
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("larmor-theme", next); } catch (e) { /* storage unavailable */ }
+        icon();
+      });
+      icon();
+    })();
+  </script>
+</body>
+</html>

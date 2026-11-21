@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Larmor · Health Twin Console</title>
+  <meta name="description" content="Evidence-gated digital twin of a system's health from MRI and local spectroscopy. Educational prototype on simulated data.">
+  <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
+  <link rel="stylesheet" href="vendor/phosphor/fill/style.css">
+  <link rel="stylesheet" href="vendor/phosphor/duotone/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bench.css">
+  <link rel="stylesheet" href="css/scene.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/assistant.css">
+  <script>
+    try { const t = localStorage.getItem("larmor-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <canvas id="spins" aria-hidden="true"></canvas>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><i class="ph-duotone ph-atom"></i></div>
+        <div>
+          <div class="brand-name">Larmor</div>
+          <div class="brand-sub">Evidence-gated health twin</div>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="sim-badge" title="Every value shown is of simulated origin. Educational prototype, no clinical meaning.">
+        <b>SIMULATED</b><span>Not a clinical statement</span>
+      </div>
+      <button class="btn icon ghost" id="themeBtn" type="button" aria-label="Switch light or dark theme"><i class="ph ph-sun"></i></button>
+    </header>
+
+    <nav class="rail" aria-label="Sections">
+      <a href="#/twin"><i class="ph-duotone ph-pulse"></i><span class="rail-label">Twin state</span></a>
+      <a href="#/scans"><i class="ph-duotone ph-scan"></i><span class="rail-label">Scans and spectra</span></a>
+      <a href="#/check"><i class="ph-duotone ph-shield-check"></i><span class="rail-label">Check a packet</span></a>
+      <a href="#/trace"><i class="ph-duotone ph-tree-structure"></i><span class="rail-label">Trace to source</span></a>
+      <a href="#/explain"><i class="ph-duotone ph-scales"></i><span class="rail-label">Competing explanations</span></a>
+      <a href="#/next"><i class="ph-duotone ph-crosshair"></i><span class="rail-label">What to measure next</span></a>
+      <a href="#/bench"><i class="ph-duotone ph-flask"></i><span class="rail-label">Test bench</span></a>
+      <a href="#/cards"><i class="ph-duotone ph-cards"></i><span class="rail-label">Measurement cards</span></a>
+      <a href="#/about"><i class="ph-duotone ph-blueprint"></i><span class="rail-label">Architecture and limits</span></a>
+      <a href="#/tests"><i class="ph-duotone ph-test-tube"></i><span class="rail-label">Regression tests</span></a>
+      <div class="rail-foot">Subject sub-01, frontal voxel.<br>Synthetic brain scanned twice, six months apart.</div>
+    </nav>
+
+    <main id="main" tabindex="-1"></main>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

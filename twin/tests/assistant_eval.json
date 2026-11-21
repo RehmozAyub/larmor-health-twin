@@ -1,0 +1,30 @@
+{
+  "about": "Evaluation set for Felix, the Larmor assistant (INTEGRATION.md: 20-30 real questions with expected answers; re-run after every prompt or docs change with: py tools/eval_assistant.py). A case passes when the answer contains every group in must_include (any one alternative per group, case-insensitive), none of must_not, and a Source line.",
+  "cases": [
+    {"id": "q01", "question": "What is Cho/Cr?", "must_include": [["choline"], ["creatine"]]},
+    {"id": "q02", "question": "Why did the twin only move 32 % of the way for Cho/Cr?", "must_include": [["warn", "warning"], ["variance", "half", "x2", "×2", "doubled"]]},
+    {"id": "q03", "question": "What is the change test z?", "must_include": [["noise", "uncertainty"], ["1.96", "2.05"]]},
+    {"id": "q04", "question": "What is d squared?", "must_include": [["surpris"], ["3.84"]]},
+    {"id": "q05", "question": "What does K mean?", "must_include": [["trust"]]},
+    {"id": "q06", "question": "Why is the real field 2.895 T and not 3 T?", "must_include": [["123.25"], ["42.577", "frequency"]]},
+    {"id": "q07", "question": "Why did the ROI volume barely move the twin?", "must_include": [["19"], ["1.1 mm", "1.1mm", "alignment", "registration"]]},
+    {"id": "q08", "question": "What should we measure next?", "must_include": [["re-shim", "reshim", "shim"], ["repeat"]]},
+    {"id": "q09", "question": "What is the expected repeat range for Cho/Cr?", "must_include": [["0.61"], ["0.88"]]},
+    {"id": "q10", "question": "What WARN factor does the test bench support?", "must_include": [["1.4"]]},
+    {"id": "q11", "question": "What is the false alarm rate of the change test on the test bench?", "must_include": [["20"]]},
+    {"id": "q12", "question": "Why is a 1.5 T follow-up packet rejected?", "must_include": [["harmoniz"]]},
+    {"id": "q13", "question": "What happens to a phantom calibration packet?", "must_include": [["reject"], ["scanner"]]},
+    {"id": "q14", "question": "What does SHA-256 verified prove?", "must_include": [["bytes", "unchanged", "not changed"], ["physics"]]},
+    {"id": "q15", "question": "What is the validation domain of Larmor?", "must_include": [["3 t"], ["press"]]},
+    {"id": "q16", "question": "Can Larmor diagnose a patient?", "must_include": [["not", "no"]], "must_not": ["yes, it can diagnose"]},
+    {"id": "q17", "question": "Which track owns the linewidth check?", "must_include": [["metrology", "pm", "precision"]]},
+    {"id": "q18", "question": "What does the 3D view show?", "must_include": [["20 mm", "cube"], ["region"]]},
+    {"id": "q19", "question": "Why does the brain look flat in the 3D view?", "must_include": [["16 slices", "64 mm", "slab"]]},
+    {"id": "q20", "question": "How do I start the app?", "must_include": [["uvicorn", "8765"]]},
+    {"id": "q21", "question": "What is the WARN policy?", "must_include": [["2", "double"]]},
+    {"id": "q22", "question": "How much does a Larmor licence cost?", "must_include": [["do not cover", "don't cover", "not covered", "no information"]]},
+    {"id": "q23", "question": "Does Larmor support CT scans?", "must_include": [["do not cover", "don't cover", "not covered", "only", "mri", "not support"]]},
+    {"id": "q24", "question": "Why was this packet rejected?", "screen": {"page": "check", "title": "Check a packet", "text": "Decision: Reject. E-t2-cho_lowfield. U13_lowfield_1p5T_followup selected. Not comparable: the field 1.50 T differs from the baseline field 2.89 T. No harmonization is declared. Owner PM."}, "must_include": [["1.5"], ["harmoniz"]]},
+    {"id": "q25", "question": "What does this result mean?", "screen": {"page": "twin", "title": "Has it changed, and how sure are we?", "text": "Cho/Cr primary variable 0.741 ± 0.048. Was 0.690 ± 0.050, new evidence 0.850 ± 0.060. Change test z 2.05 limit 1.96. Surprise d² 3.66 gate 3.84. Trust in evidence K 0.321. Update with warning."}, "must_include": [["suggestive", "not conclusive", "not proven"]]}
+  ]
+}
